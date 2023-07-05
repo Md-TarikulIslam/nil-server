@@ -23,6 +23,7 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
+    // Gallery collection
     const nilmrcGalleryCollection = client
       .db("nilmrc")
       .collection("nilmrc-gallery");
@@ -31,6 +32,17 @@ async function run() {
       const query = {};
       const photos = await nilmrcGalleryCollection.find(query).toArray();
       res.send(photos);
+    });
+
+    // Notice Board
+    const nilmrcNoticeCollection = client
+      .db("nilmrc")
+      .collection("nilmrc-notice");
+
+    app.get("/nilmrc-notice", async (req, res) => {
+      const query = {};
+      const notices = await nilmrcNoticeCollection.find(query).toArray();
+      res.send(notices);
     });
   } finally {
     // Ensures that the client will close when you finish/error
