@@ -35,13 +35,13 @@ async function run() {
     });
 
     // Notice Board
-    const nilmrcNoticeCollection = client
+    const nilmrcNoticesCollection = client
       .db("nilmrc")
       .collection("nilmrc-notice");
 
     app.get("/nilmrc-notice", async (req, res) => {
       const query = {};
-      const notices = await nilmrcNoticeCollection.find(query).toArray();
+      const notices = await nilmrcNoticesCollection.find(query).toArray();
       res.send(notices);
     });
   } finally {
